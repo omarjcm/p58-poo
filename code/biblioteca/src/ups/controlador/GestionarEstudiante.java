@@ -12,7 +12,7 @@ public class GestionarEstudiante implements Gestionar {
     }
 
     @Override
-    public void eliminar() {
+    public void eliminar(String cedula) {
 
     }
 
@@ -20,4 +20,10 @@ public class GestionarEstudiante implements Gestionar {
     public void listar() {
 
     }
+
+    @Override
+    public Object buscar(String cedula) {
+        return null;
+    }
+
 }

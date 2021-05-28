@@ -42,12 +42,21 @@ public class GestionarBibliotecario implements Gestionar {
     }
 
     @Override
-    public void eliminar() {
+    public void eliminar(String cedula) {
 
     }
 
     @Override
     public void listar() {
+        Bibliotecario obj = (Bibliotecario) objeto;
+        for (int i=0; i<this.bibliotecarios.size(); i++) {
+            Bibliotecario bibliotecario = this.bibliotecarios.get(i);
+            bibliotecario.imprimir();
+        }
+    }
 
+    @Override
+    public Object buscar(String cedula) {
+        return null;
     }
 }
