@@ -53,8 +53,8 @@ public class Biblioteca {
                     objeto.gestionar( bibliotecarios );
                     break;
                 case 2:
-                    DocenteCLI objeto2 = new DocenteCLI();
-                    objeto2.gestionar( docentes );
+                    DocenteCLI docente = new DocenteCLI();
+                    docente.gestionar( docentes );
                     break;
                 case 3:
                     break;

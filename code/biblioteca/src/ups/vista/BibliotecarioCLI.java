@@ -1,54 +1,49 @@
 package ups.vista;
 
 import ups.controlador.GestionarBibliotecario;
+import ups.informacion.Menu;
 import ups.modelo.universidad.Bibliotecario;
 
 import java.util.Scanner;
 
-public class BibliotecarioCLI {
+public class BibliotecarioCLI implements GestionarCLI {
     public void gestionar(GestionarBibliotecario objeto) {
         Scanner consola = new Scanner(System.in);
         int opcion = 0;
 
         while (opcion != 6) {
-            System.out.println("************************************");
-            System.out.println("GESTIONAR BIBLIOTECARIO");
-            System.out.println("************************************");
-            System.out.println("[1].- Registrar Bibliotecario.");
-            System.out.println("[2].- Modificar Bibliotecario.");
-            System.out.println("[3].- Eliminar Bibliotecario.");
-            System.out.println("[4].- Buscar Bibliotecario.");
-            System.out.println("[5].- Listar Bibliotecarios.");
-            System.out.println("[6].- Salir.");
-            System.out.println("************************************");
-            System.out.print("Opción: ");
+            Menu.menu_gestionar( "Bibliotecario" );
             opcion = consola.nextInt();
             System.out.println();
 
             switch (opcion) {
                 case 1:
-                    this.registrarBibliotecario(objeto);
+                    this.registrarCLI(objeto);
                     break;
                 case 2:
+                    this.modificarCLI(objeto);
                     break;
                 case 3:
+                    this.eliminarCLI(objeto);
                     break;
                 case 4:
+                    this.buscarCLI(objeto);
                     break;
                 case 5:
-                    this.listarBibliotecarios(objeto);
+                    this.listarCLI(objeto);
                     break;
             }
         }
     }
 
-    public void registrarBibliotecario(GestionarBibliotecario objeto) {
+    @Override
+    public void registrarCLI(Object objeto) {
+        GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
+
         Scanner consola = new Scanner(System.in);
         Bibliotecario bibliotecario = new Bibliotecario();
 
-        System.out.println("************************************");
-        System.out.println("REGISTRAR BIBLIOTECARIO");
-        System.out.println("************************************");
+        Menu.cabecera("REGISTRAR BIBLIOTECARIO");
         System.out.println("Cédula: ");
         bibliotecario.setCedula( consola.nextLine() );
         System.out.println("Nombre: ");
@@ -60,12 +55,96 @@ public class BibliotecarioCLI {
         System.out.println("Clave: ");
         bibliotecario.setClave( consola.nextLine() );
 
-        objeto.registrar( bibliotecario );
+        gestionar.registrar( bibliotecario );
     }
 
-    public void listarBibliotecarios(GestionarBibliotecario objeto) {
-        for (int i=0; i<objeto.getBibliotecarios().size(); i++) {
-            Bibliotecario bibliotecario = objeto.getBibliotecarios().get(i);
+    @Override
+    public void modificarCLI(Object objeto) {
+        GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
+
+        Scanner consola = new Scanner(System.in);
+        Bibliotecario bibliotecario = new Bibliotecario();
+
+        Menu.cabecera("MODIFICAR BIBLIOTECARIO");
+        System.out.println("Cédula: ");
+        bibliotecario = (Bibliotecario) gestionar.buscar( consola.nextLine() );
+
+        if (bibliotecario != null) {
+            System.out.println("Nombre: " + bibliotecario.getNombre());
+            System.out.println("Nombre: ");
+            String cadena = consola.nextLine();
+            if (cadena.compareTo("") != 0)
+                bibliotecario.setNombre( cadena );
+            System.out.println("Apellido: " + bibliotecario.getApellido());
+            System.out.println("Apellido: ");
+            cadena = consola.nextLine();
+            if (cadena.compareTo("") != 0)
+                bibliotecario.setApellido( cadena );
+            System.out.println("Usuario: " + bibliotecario.getUsuario());
+            System.out.println("Usuario: ");
+            cadena = consola.nextLine();
+            if (cadena.compareTo("") != 0)
+                bibliotecario.setUsuario( cadena );
+            System.out.println("Clave: " + bibliotecario.getClave());
+            System.out.println("Clave: ");
+            cadena = consola.nextLine();
+            if (cadena.compareTo("") != 0)
+                bibliotecario.setClave( cadena );
+
+            gestionar.modificar( bibliotecario );
+        } else {
+            System.out.println("El usuario no existe.");
+        }
+    }
+
+    @Override
+    public void eliminarCLI(Object objeto) {
+        GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
+
+        Scanner consola = new Scanner(System.in);
+        Bibliotecario bibliotecario = new Bibliotecario();
+
+        Menu.cabecera("ELIMINAR BIBLIOTECARIO");
+        System.out.println("Cédula: ");
+        bibliotecario = (Bibliotecario) gestionar.buscar( consola.nextLine() );
+
+        if (bibliotecario != null) {
+            System.out.println("¿Está seguro de eliminar al usuario [S o N]?");
+            String respuesta = consola.nextLine();
+            if (respuesta.compareTo("S") == 0)
+                gestionar.eliminar( bibliotecario.getCedula() );
+        } else {
+            System.out.println("El usuario no existe.");
+        }
+    }
+
+    @Override
+    public void buscarCLI(Object objeto) {
+        GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
+
+        Scanner consola = new Scanner(System.in);
+        Bibliotecario bibliotecario = new Bibliotecario();
+
+        Menu.cabecera("BUSCAR BIBLIOTECARIO");
+        System.out.println("Cédula: ");
+        bibliotecario = (Bibliotecario) gestionar.buscar( consola.nextLine() );
+
+        if (bibliotecario != null) {
+            System.out.println("¿Está seguro de eliminar al usuario [S o N]?");
+            String respuesta = consola.nextLine();
+            if (respuesta.compareTo("S") == 0)
+                gestionar.eliminar( bibliotecario.getCedula() );
+        } else {
+            System.out.println("El usuario no existe.");
+        }
+    }
+
+    @Override
+    public void listarCLI(Object objeto) {
+        GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
+        Menu.cabecera("LISTAR BIBLIOTECARIOS");
+        for (int i=0; i<gestionar.getBibliotecarios().size(); i++) {
+            Bibliotecario bibliotecario = gestionar.getBibliotecarios().get(i);
             bibliotecario.imprimir();
         }
     }

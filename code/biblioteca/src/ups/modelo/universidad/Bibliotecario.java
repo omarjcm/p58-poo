@@ -45,8 +45,11 @@ public class Bibliotecario extends Persona {
     }
 
     public void imprimir() {
+        System.out.println("**********************************");
         super.imprimir();
         System.out.println("Usuario: " + this.usuario);
         System.out.println("Clave: " + this.clave);
+        System.out.println("**********************************");
+        System.out.println();
     }
 }
