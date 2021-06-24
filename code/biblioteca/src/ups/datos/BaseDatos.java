@@ -2,11 +2,14 @@ package ups.datos;
 
 import ups.informacion.Valores;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class BaseDatos {
+
+    private Connection conexion;
+    private PreparedStatement ps;
+    private ResultSet rs;
+
     public void conectar() {
         try {
             try {
@@ -14,11 +17,34 @@ public class BaseDatos {
             } catch (ClassNotFoundException ex) {
                 System.out.println("[Error]: Error al registrar el driver de PostgreSQL.");
             }
-            Connection conexion = null;
-            conexion = DriverManager.getConnection("jdbc:postgresql://localhost:5432/biblioteca", "postgres", "inexcelsisdeo");
+            LeerArchivo archivo = new LeerArchivo();
+            archivo.obtenerValores();
 
-            boolean valid = conexion.isValid(5000);
-            System.out.println( valid ? "TEST OK" : "TEST FAIL" );
+            this.conexion = DriverManager.getConnection(
+                    archivo.obtenerUrlConexion(),
+                    archivo.getConexion().getUsuario(),
+                    archivo.getConexion().getClave());
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+        }
+    }
+
+    public ResultSet ejecutarConsulta(String sql) {
+        try {
+            this.ps = this.conexion.prepareStatement( sql );
+            this.rs = this.ps.executeQuery();
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+        }
+        return this.rs;
+    }
+
+    public void cerrar() {
+        try {
+            if (this.ps != null) {
+                this.ps.close();
+            }
+            this.conexion.close();
         } catch (SQLException ex) {
             System.out.println("[Error]: " + ex.getMessage());
         }
@@ -27,5 +53,6 @@ public class BaseDatos {
     public static void main(String[] args) {
         BaseDatos conexion = new BaseDatos();
         conexion.conectar();
+        conexion.cerrar();
     }
 }
