@@ -1,7 +1,5 @@
 package ups.datos;
 
-import ups.informacion.Valores;
-
 import java.sql.*;
 
 public class BaseDatos {
@@ -12,20 +10,19 @@ public class BaseDatos {
 
     public void conectar() {
         try {
-            try {
-                Class.forName( Valores.DRIVER_POSTGRESQL );
-            } catch (ClassNotFoundException ex) {
-                System.out.println("[Error]: Error al registrar el driver de PostgreSQL.");
-            }
             LeerArchivo archivo = new LeerArchivo();
             archivo.obtenerValores();
-
+            Class.forName( archivo.getConexion().getDriverClass() );
             this.conexion = DriverManager.getConnection(
                     archivo.obtenerUrlConexion(),
                     archivo.getConexion().getUsuario(),
                     archivo.getConexion().getClave());
+
+            System.out.println("TEST OK");
         } catch (SQLException ex) {
             System.out.println("[Error]: " + ex.getMessage());
+        } catch (ClassNotFoundException ex) {
+            System.out.println("[Error]: Error al registrar el driver de PostgreSQL.");
         }
     }
 

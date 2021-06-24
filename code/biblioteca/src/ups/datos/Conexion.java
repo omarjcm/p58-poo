@@ -3,6 +3,7 @@ package ups.datos;
 public class Conexion {
 
     private String driver;
+    private String driverClass;
     private String host;
     private String puerto;
     private String dbname;
@@ -11,6 +12,14 @@ public class Conexion {
 
     public Conexion() {
 
+    }
+
+    public String getDriverClass() {
+        return driverClass;
+    }
+
+    public void setDriverClass(String driverClass) {
+        this.driverClass = driverClass;
     }
 
     public String getDriver() {

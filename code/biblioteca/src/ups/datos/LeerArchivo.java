@@ -24,6 +24,7 @@ public class LeerArchivo {
             }
 
             this.conexion.setDriver( prop.getProperty("db.driver") );
+            this.conexion.setDriverClass( prop.getProperty("db.driverclass") );
             this.conexion.setHost( prop.getProperty("db.host") );
             this.conexion.setPuerto( prop.getProperty("db.puerto") );
             this.conexion.setUsuario( prop.getProperty("db.usuario") );
