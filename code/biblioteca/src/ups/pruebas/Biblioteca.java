@@ -1,6 +1,6 @@
 package ups.pruebas;
 
-import ups.modelo.libreria.*;
+import ups.modelo.dominio.libreria.*;
 
 import java.util.ArrayList;
 

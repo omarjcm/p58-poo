@@ -1,6 +1,6 @@
 package ups.controlador;
 
-import ups.modelo.universidad.Bibliotecario;
+import ups.modelo.dominio.universidad.Bibliotecario;
 
 public class VerifcarUsuario {
 

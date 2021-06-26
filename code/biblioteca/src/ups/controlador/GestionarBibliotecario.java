@@ -1,6 +1,7 @@
 package ups.controlador;
 
-import ups.modelo.universidad.Bibliotecario;
+import ups.modelo.bd.universidad.BibliotecarioBD;
+import ups.modelo.dominio.universidad.Bibliotecario;
 
 import java.util.ArrayList;
 
@@ -54,9 +55,12 @@ public class GestionarBibliotecario implements Gestionar {
 
     @Override
     public void listar() {
-        for (int i=0; i<this.bibliotecarios.size(); i++) {
-            Bibliotecario bibliotecario = this.bibliotecarios.get(i);
-            bibliotecario.imprimir();
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+        ArrayList<Object> objetos = gestionar.listar();
+
+        for (int i=0; i<objetos.size(); i++) {
+            Bibliotecario objeto = (Bibliotecario) objetos.get(i);
+            objeto.imprimir();
         }
     }
 

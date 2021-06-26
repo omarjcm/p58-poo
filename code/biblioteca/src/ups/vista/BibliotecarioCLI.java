@@ -2,7 +2,7 @@ package ups.vista;
 
 import ups.controlador.GestionarBibliotecario;
 import ups.informacion.Menu;
-import ups.modelo.universidad.Bibliotecario;
+import ups.modelo.dominio.universidad.Bibliotecario;
 
 import java.util.Scanner;
 
@@ -143,9 +143,6 @@ public class BibliotecarioCLI implements GestionarCLI {
     public void listarCLI(Object objeto) {
         GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
         Menu.cabecera("LISTAR BIBLIOTECARIOS");
-        for (int i=0; i<gestionar.getBibliotecarios().size(); i++) {
-            Bibliotecario bibliotecario = gestionar.getBibliotecarios().get(i);
-            bibliotecario.imprimir();
-        }
+        gestionar.listar();
     }
 }

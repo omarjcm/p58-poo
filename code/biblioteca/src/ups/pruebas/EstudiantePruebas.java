@@ -1,6 +1,6 @@
 package ups.pruebas;
 
-import ups.modelo.universidad.Estudiante;
+import ups.modelo.dominio.universidad.Estudiante;
 
 public class EstudiantePruebas {
     public static void main(String[] args) {

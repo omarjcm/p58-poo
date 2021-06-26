@@ -1,7 +1,6 @@
 package ups.vista;
 
 import ups.controlador.GestionarBibliotecario;
-import ups.controlador.GestionarBibliotecarioBD;
 import ups.controlador.GestionarDocente;
 
 import java.util.Scanner;
@@ -19,7 +18,7 @@ public class Biblioteca {
 
             VerificarUsuarioCLI cli = new VerificarUsuarioCLI();
             if (cli.verificarUsuario()) {
-                GestionarBibliotecarioBD bibliotecarios = new GestionarBibliotecarioBD();
+                GestionarBibliotecario bibliotecarios = new GestionarBibliotecario();
                 GestionarDocente docentes = new GestionarDocente();
                 menuPrincipal(bibliotecarios, docentes);
 
@@ -31,7 +30,7 @@ public class Biblioteca {
         }
     }
 
-    public static void menuPrincipal(GestionarBibliotecarioBD bibliotecarios, GestionarDocente docentes) {
+    public static void menuPrincipal(GestionarBibliotecario bibliotecarios, GestionarDocente docentes) {
         Scanner consola = new Scanner(System.in);
 
         int opcion = 0;
@@ -50,7 +49,7 @@ public class Biblioteca {
 
             switch (opcion) {
                 case 1:
-                    BibliotecarioCLIBD objeto = new BibliotecarioCLIBD();
+                    BibliotecarioCLI objeto = new BibliotecarioCLI();
                     objeto.gestionar( bibliotecarios );
                     break;
                 case 2:

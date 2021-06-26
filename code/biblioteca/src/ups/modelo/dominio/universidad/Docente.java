@@ -1,4 +1,4 @@
-package ups.modelo.universidad;
+package ups.modelo.dominio.universidad;
 
 import java.util.*;
 

@@ -1,6 +1,6 @@
 package ups.pruebas;
 
-import ups.modelo.libreria.Libro;
+import ups.modelo.dominio.libreria.Libro;
 
 public class LibroPruebas {
     public static void main(String[] args) {
