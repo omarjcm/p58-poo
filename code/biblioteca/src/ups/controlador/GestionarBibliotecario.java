@@ -30,29 +30,19 @@ public class GestionarBibliotecario implements Gestionar {
 
     @Override
     public void modificar(Object objeto) {
-        Bibliotecario obj = (Bibliotecario) objeto;
-        for (int i=0; i<this.bibliotecarios.size(); i++) {
-            Bibliotecario bibliotecario = this.bibliotecarios.get(i);
-            if (bibliotecario.getCedula().compareTo( obj.getCedula() ) == 0) {
-                bibliotecario.setNombre( obj.getNombre() );
-                bibliotecario.setApellido( obj.getApellido() );
-                bibliotecario.setUsuario( obj.getUsuario() );
-                bibliotecario.setClave( obj.getClave() );
-
-                return;
-            }
-        }
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+        Bibliotecario bibliotecario = (Bibliotecario) gestionar.modificar( objeto );
     }
 
     @Override
     public void eliminar(String cedula) {
-        for (int i=0; i<this.bibliotecarios.size(); i++) {
-            Bibliotecario bibliotecario = this.bibliotecarios.get(i);
-            if (bibliotecario.getCedula().compareTo( cedula ) == 0) {
-                this.bibliotecarios.remove(i);
-                return;
-            }
-        }
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+
+        Bibliotecario objeto = new Bibliotecario();
+        objeto.setCedula( cedula );
+        Bibliotecario bibliotecario = (Bibliotecario) gestionar.eliminar(
+                gestionar.buscar( objeto )
+        );
     }
 
     @Override
@@ -68,12 +58,16 @@ public class GestionarBibliotecario implements Gestionar {
 
     @Override
     public Object buscar(String cedula) {
-        for (int i=0; i<this.bibliotecarios.size(); i++) {
-            Bibliotecario bibliotecario = this.bibliotecarios.get(i);
-            if (bibliotecario.getCedula().compareTo( cedula ) == 0) {
-                return this.bibliotecarios.get(i);
-            }
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+
+        Bibliotecario objeto = new Bibliotecario();
+        objeto.setCedula( cedula );
+        objeto = (Bibliotecario) gestionar.buscar( objeto );
+        if (objeto != null) {
+            objeto.imprimir();
+            return objeto;
+        } else {
+            return null;
         }
-        return null;
     }
 }

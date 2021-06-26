@@ -38,17 +38,85 @@ public class BibliotecarioBD extends Bibliotecario implements BD {
     }
 
     @Override
-    public void modificar(Object objeto) {
+    public Object modificar(Object objeto) {
+        Bibliotecario bibliotecario = (Bibliotecario) objeto;
 
+        try {
+            BaseDatos bd = new BaseDatos();
+            bd.conectar();
+
+            String sql = "UPDATE bibliotecario " +
+                            "SET nombres=?, apellidos=?, usuario=?, clave=? " +
+                            "WHERE cedula=?;";
+
+            bd.setPs( bd.getConexion().prepareStatement( sql ) );
+            bd.getPs().setString(1, bibliotecario.getNombre() );
+            bd.getPs().setString(2, bibliotecario.getApellido() );
+            bd.getPs().setString(3, bibliotecario.getUsuario() );
+            bd.getPs().setString(4, bibliotecario.getClave() );
+            bd.getPs().setString(5, bibliotecario.getCedula() );
+
+            bd.getPs().execute();
+            bd.cerrar();
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+            objeto = null;
+        }
+
+        return objeto;
     }
 
     @Override
-    public void eliminar(Object objeto) {
+    public Object eliminar(Object objeto) {
+        Bibliotecario bibliotecario = (Bibliotecario) objeto;
+
+        try {
+            BaseDatos bd = new BaseDatos();
+            bd.conectar();
+
+            String sql = "DELETE  FROM bibliotecario WHERE cedula=?;";
+
+            bd.setPs( bd.getConexion().prepareStatement( sql ) );
+            bd.getPs().setString(1, bibliotecario.getCedula() );
+
+            bd.getPs().execute();
+            bd.cerrar();
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+            objeto = null;
+        }
+
+        return objeto;
 
     }
 
     @Override
     public Object buscar(Object objeto) {
+        Bibliotecario bibliotecario = (Bibliotecario) objeto;
+        try {
+            BaseDatos bd = new BaseDatos();
+            bd.conectar();
+            String sql = "SELECT cedula, nombres, apellidos, usuario, clave " +
+                    "FROM bibliotecario " +
+                    "WHERE cedula=?;";
+
+            bd.setPs( bd.getConexion().prepareStatement( sql ) );
+            bd.getPs().setString(1, bibliotecario.getCedula() );
+
+            ResultSet rs = bd.getPs().executeQuery();
+            while(rs.next()) {
+                bibliotecario.setCedula( rs.getString(1) );
+                bibliotecario.setNombre( rs.getString(2) );
+                bibliotecario.setApellido( rs.getString(3) );
+                bibliotecario.setUsuario( rs.getString(4) );
+                bibliotecario.setClave( rs.getString(5) );
+
+                return bibliotecario;
+            }
+            bd.cerrar();
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+        }
         return null;
     }
 
@@ -62,7 +130,7 @@ public class BibliotecarioBD extends Bibliotecario implements BD {
             String sql = "SELECT cedula, nombres, apellidos, usuario, clave FROM bibliotecario;";
             ResultSet rs = bd.ejecutarConsulta( sql );
             while(rs.next()) {
-                Bibliotecario objeto = new BibliotecarioBD();
+                Bibliotecario objeto = new Bibliotecario();
 
                 objeto.setCedula( rs.getString(1) );
                 objeto.setNombre( rs.getString(2) );

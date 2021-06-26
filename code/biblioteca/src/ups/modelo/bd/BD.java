@@ -6,9 +6,9 @@ public interface BD {
 
     public Object registrar(Object objeto);
 
-    public void modificar(Object objeto);
+    public Object modificar(Object objeto);
 
-    public void eliminar(Object objeto);
+    public Object eliminar(Object objeto);
 
     public Object buscar(Object objeto);
 

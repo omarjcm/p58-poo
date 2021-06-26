@@ -2,6 +2,7 @@ package ups.vista;
 
 import ups.controlador.GestionarBibliotecario;
 import ups.informacion.Menu;
+import ups.modelo.bd.universidad.BibliotecarioBD;
 import ups.modelo.dominio.universidad.Bibliotecario;
 
 import java.util.Scanner;
@@ -63,10 +64,11 @@ public class BibliotecarioCLI implements GestionarCLI {
         GestionarBibliotecario gestionar = (GestionarBibliotecario) objeto;
 
         Scanner consola = new Scanner(System.in);
-        Bibliotecario bibliotecario = new Bibliotecario();
 
         Menu.cabecera("MODIFICAR BIBLIOTECARIO");
         System.out.println("Cédula: ");
+
+        Bibliotecario bibliotecario = new Bibliotecario();
         bibliotecario = (Bibliotecario) gestionar.buscar( consola.nextLine() );
 
         if (bibliotecario != null) {
@@ -128,15 +130,7 @@ public class BibliotecarioCLI implements GestionarCLI {
         Menu.cabecera("BUSCAR BIBLIOTECARIO");
         System.out.println("Cédula: ");
         bibliotecario = (Bibliotecario) gestionar.buscar( consola.nextLine() );
-
-        if (bibliotecario != null) {
-            System.out.println("¿Está seguro de eliminar al usuario [S o N]?");
-            String respuesta = consola.nextLine();
-            if (respuesta.compareTo("S") == 0)
-                gestionar.eliminar( bibliotecario.getCedula() );
-        } else {
-            System.out.println("El usuario no existe.");
-        }
+        bibliotecario.imprimir();
     }
 
     @Override
