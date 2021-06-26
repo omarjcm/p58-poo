@@ -11,8 +11,30 @@ import java.util.ArrayList;
 public class BibliotecarioBD extends Bibliotecario implements BD {
 
     @Override
-    public void registrar(Object objeto) {
+    public Object registrar(Object objeto) {
+        Bibliotecario bibliotecario = (Bibliotecario) objeto;
 
+        try {
+            BaseDatos bd = new BaseDatos();
+            bd.conectar();
+
+            String sql = "INSERT INTO bibliotecario VALUES(?, ?, ?, ?, ?);";
+
+            bd.setPs( bd.getConexion().prepareStatement( sql ) );
+            bd.getPs().setString(1, bibliotecario.getCedula() );
+            bd.getPs().setString(2, bibliotecario.getNombre() );
+            bd.getPs().setString(3, bibliotecario.getApellido() );
+            bd.getPs().setString(4, bibliotecario.getUsuario() );
+            bd.getPs().setString(5, bibliotecario.getClave() );
+
+            bd.getPs().execute();
+            bd.cerrar();
+        } catch (SQLException ex) {
+            System.out.println("[Error]: " + ex.getMessage());
+            objeto = null;
+        }
+
+        return objeto;
     }
 
     @Override

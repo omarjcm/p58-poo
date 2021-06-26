@@ -23,7 +23,9 @@ public class GestionarBibliotecario implements Gestionar {
 
     @Override
     public void registrar(Object objeto) {
-        this.bibliotecarios.add((Bibliotecario) objeto);
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+        Bibliotecario bibliotecario = (Bibliotecario) gestionar.registrar( objeto );
+        this.bibliotecarios.add( bibliotecario );
     }
 
     @Override

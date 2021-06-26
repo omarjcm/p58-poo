@@ -8,6 +8,30 @@ public class BaseDatos {
     private PreparedStatement ps;
     private ResultSet rs;
 
+    public Connection getConexion() {
+        return conexion;
+    }
+
+    public void setConexion(Connection conexion) {
+        this.conexion = conexion;
+    }
+
+    public PreparedStatement getPs() {
+        return ps;
+    }
+
+    public void setPs(PreparedStatement ps) {
+        this.ps = ps;
+    }
+
+    public ResultSet getRs() {
+        return rs;
+    }
+
+    public void setRs(ResultSet rs) {
+        this.rs = rs;
+    }
+
     public void conectar() {
         try {
             LeerArchivo archivo = new LeerArchivo();

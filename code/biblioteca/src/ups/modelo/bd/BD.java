@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public interface BD {
 
-    public void registrar(Object objeto);
+    public Object registrar(Object objeto);
 
     public void modificar(Object objeto);
 
