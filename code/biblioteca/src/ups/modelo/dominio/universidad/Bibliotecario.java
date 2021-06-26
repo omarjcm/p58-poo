@@ -39,13 +39,6 @@ public class Bibliotecario extends Persona {
         this.clave = clave;
     }
 
-    public boolean existeUsuario() {
-        if (this.usuario.compareTo("gpizarro") == 0 && this.clave.compareTo("123") == 0) {
-            return Boolean.TRUE;
-        }
-        return Boolean.FALSE;
-    }
-
     public void imprimir() {
         System.out.println("**********************************");
         super.imprimir();

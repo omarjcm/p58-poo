@@ -10,6 +10,19 @@ import java.util.ArrayList;
 
 public class BibliotecarioBD extends Bibliotecario implements BD {
 
+    public boolean existeUsuario(String usuario, String clave) {
+        BibliotecarioBD gestionar = new BibliotecarioBD();
+        Bibliotecario objeto = new Bibliotecario();
+        objeto.setUsuario( usuario );
+        objeto.setClave( clave );
+
+        objeto = (Bibliotecario) gestionar.buscar( objeto );
+        if (objeto != null) {
+            return Boolean.TRUE;
+        }
+        return Boolean.FALSE;
+    }
+
     @Override
     public Object registrar(Object objeto) {
         Bibliotecario bibliotecario = (Bibliotecario) objeto;
@@ -98,10 +111,12 @@ public class BibliotecarioBD extends Bibliotecario implements BD {
             bd.conectar();
             String sql = "SELECT cedula, nombres, apellidos, usuario, clave " +
                     "FROM bibliotecario " +
-                    "WHERE cedula=?;";
+                    "WHERE cedula=? OR (usuario=? AND clave=?);";
 
             bd.setPs( bd.getConexion().prepareStatement( sql ) );
             bd.getPs().setString(1, bibliotecario.getCedula() );
+            bd.getPs().setString(2, bibliotecario.getUsuario() );
+            bd.getPs().setString(3, bibliotecario.getClave() );
 
             ResultSet rs = bd.getPs().executeQuery();
             while(rs.next()) {

@@ -1,19 +1,19 @@
 package ups.controlador;
 
-import ups.modelo.dominio.universidad.Bibliotecario;
+import ups.modelo.bd.universidad.BibliotecarioBD;
 
 public class VerifcarUsuario {
 
-    private Bibliotecario bibliotecario;
+    private BibliotecarioBD bibliotecario;
 
     public VerifcarUsuario(String usuario, String clave) {
-        this.bibliotecario = new Bibliotecario();
+        this.bibliotecario = new BibliotecarioBD();
         this.bibliotecario.setUsuario( usuario );
         this.bibliotecario.setClave( clave );
     }
 
     public Boolean verificarUsuario() {
-        if (this.bibliotecario.existeUsuario()) {
+        if (this.bibliotecario.existeUsuario( this.bibliotecario.getUsuario(), this.bibliotecario.getClave() )) {
             return Boolean.TRUE;
         }
 
