@@ -5,8 +5,7 @@ import ups.controlador.GestionarDocente;
 
 import java.util.Scanner;
 
-public class Biblioteca {
-
+public class BibliotecaCLI {
 
     public static void main(String[] args) {
 

@@ -2,7 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/code.iml" filepath="$PROJECT_DIR$/code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FundamentosJava/FundamentosJava.iml" filepath="$PROJECT_DIR$/FundamentosJava/FundamentosJava.iml" />
+      <module fileurl="file://$PROJECT_DIR$/talleres/U1_TALLER_02/U1_TALLER_02.iml" filepath="$PROJECT_DIR$/talleres/U1_TALLER_02/U1_TALLER_02.iml" />
+      <module fileurl="file://$PROJECT_DIR$/talleres/U1_TALLER_02b/U1_TALLER_02b.iml" filepath="$PROJECT_DIR$/talleres/U1_TALLER_02b/U1_TALLER_02b.iml" />
+      <module fileurl="file://$PROJECT_DIR$/biblioteca/biblioteca.iml" filepath="$PROJECT_DIR$/biblioteca/biblioteca.iml" />
+      <module fileurl="file://$PROJECT_DIR$/biblioteca2.0/biblioteca2.0.iml" filepath="$PROJECT_DIR$/biblioteca2.0/biblioteca2.0.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/code.iml" filepath="$PROJECT_DIR$/.idea/code.iml" />
+      <module fileurl="file://$PROJECT_DIR$/biblioteca/out/out.iml" filepath="$PROJECT_DIR$/biblioteca/out/out.iml" />
     </modules>
   </component>
 </project>
