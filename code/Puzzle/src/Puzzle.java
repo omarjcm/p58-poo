@@ -1,16 +1,24 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Puzzle extends JFrame {
+public class Puzzle extends JFrame implements ActionListener {
 
-    private ArrayList<Icon> allImages = new ArrayList<Icon>();
-    private ArrayList<JButton> allButtons = new ArrayList<JButton>();
+    private ArrayList<Icon> allImages;
+    private ArrayList<JButton> allButtons;
     private JPanel panel;
+    private boolean firstClick;
+    private JButton firstBtn;
+    private JButton secondBtn;
 
     public Puzzle() {
         super("Picture Puzzle");
+        this.allImages = new ArrayList<Icon>();
+        this.allButtons = new ArrayList<JButton>();
+        this.firstClick = false;
         storageImages();
         init();
     }
@@ -37,7 +45,8 @@ public class Puzzle extends JFrame {
     public void createButtons() {
         for (int i=0; i < 9; i++) {
             JButton btn = new JButton( resizeIcon( this.allImages.get(i) ) );
-            btn.setPreferredSize(new Dimension(150, 150));
+            btn.setPreferredSize( new Dimension(150, 150) );
+            btn.addActionListener(this );
             this.allButtons.add( btn );
         }
 
@@ -55,5 +64,28 @@ public class Puzzle extends JFrame {
 
     public static void main(String[] args) {
         new Puzzle();
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (!firstClick) {
+            firstClick = true;
+            this.firstBtn = (JButton) e.getSource();
+        } else {
+            firstClick = false;
+            this.secondBtn = (JButton) e.getSource();
+
+            if (this.secondBtn != this.firstBtn) {
+                swap();
+            }
+        }
+    }
+
+    public void swap() {
+        Icon icon1 = this.firstBtn.getIcon();
+        Icon icon2 = this.secondBtn.getIcon();
+
+        this.firstBtn.setIcon( icon2 );
+        this.secondBtn.setIcon( icon1 );
     }
 }
