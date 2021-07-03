@@ -30,21 +30,27 @@ public class Puzzle extends JFrame {
     public void storageImages() {
         for (int i=1; i<=9; i++) {
             Icon icon = new ImageIcon(getClass().getResource("dog-puzzle/" + i + ".jpg"));
-            allImages.add( icon );
+            this.allImages.add( icon );
         }
     }
 
     public void createButtons() {
         for (int i=0; i < 9; i++) {
-            JButton btn = new JButton( allImages.get(i) );
-            allButtons.add( btn );
+            JButton btn = new JButton( resizeIcon( this.allImages.get(i) ) );
+            btn.setPreferredSize(new Dimension(150, 150));
+            this.allButtons.add( btn );
         }
 
-        Collections.shuffle( allButtons );
+        Collections.shuffle( this.allButtons );
 
         for (int i=0; i<9; i++) {
-            panel.add( allButtons.get(i) );
+            this.panel.add( this.allButtons.get(i) );
         }
+    }
+
+    public Icon resizeIcon(Icon input) {
+        ImageIcon img = new ImageIcon(((ImageIcon) input).getImage().getScaledInstance(150, 150, DO_NOTHING_ON_CLOSE));
+        return img;
     }
 
     public static void main(String[] args) {
