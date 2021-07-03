@@ -45,6 +45,7 @@ public class Puzzle extends JFrame implements ActionListener {
     public void createButtons() {
         for (int i=0; i < 9; i++) {
             JButton btn = new JButton( resizeIcon( this.allImages.get(i) ) );
+            ((ImageIcon) btn.getIcon()).setDescription( String.valueOf( i ) );
             btn.setPreferredSize( new Dimension(150, 150) );
             btn.addActionListener(this );
             this.allButtons.add( btn );
@@ -78,6 +79,11 @@ public class Puzzle extends JFrame implements ActionListener {
             if (this.secondBtn != this.firstBtn) {
                 swap();
             }
+
+            boolean result = checkWin();
+            if (result) {
+                JOptionPane.showMessageDialog(this, "¡Muy bien, ganaste!", "Felicitaciones1", JOptionPane.PLAIN_MESSAGE);
+            }
         }
     }
 
@@ -87,5 +93,18 @@ public class Puzzle extends JFrame implements ActionListener {
 
         this.firstBtn.setIcon( icon2 );
         this.secondBtn.setIcon( icon1 );
+    }
+
+    public boolean checkWin() {
+        boolean win = true;
+
+        for (int i=0; i<9; i++) {
+            if ( !((ImageIcon)allButtons.get(i).getIcon() ).getDescription().equals( String.valueOf(i) ) )  {
+                win = false;
+                break;
+            }
+        }
+
+        return win;
     }
 }
