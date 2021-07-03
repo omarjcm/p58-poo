@@ -30,6 +30,17 @@ public class Puzzle extends JFrame implements ActionListener {
 
         createButtons();
 
+        JButton reset = new JButton("RESET");
+        getContentPane().add(reset, BorderLayout.SOUTH);
+        reset.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                allButtons.clear();
+                getContentPane().removeAll();
+                init();
+            }
+        });
+
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         pack();
         setVisible(true);
