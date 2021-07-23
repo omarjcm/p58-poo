@@ -3,6 +3,7 @@ package ec.edu.ups.modelo;
 import java.awt.*;
 
 public class Barra {
+
     private int ancho;
     private int alto;
     private int posicionX;

@@ -5,6 +5,8 @@ import ec.edu.ups.modelo.Barra;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class GestionarBarras extends JPanel {
@@ -60,6 +62,11 @@ public class GestionarBarras extends JPanel {
         }
     }
 
+    public void ordenar() {
+        OrdenamientoBurbuja ejecutar = new OrdenamientoBurbuja(this.barras);
+        ejecutar.ordenar();
+    }
+
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -70,5 +77,13 @@ public class GestionarBarras extends JPanel {
 
     public Dimension getPreferredSize() {
         return new Dimension(Constante.ANCHO, Constante.ALTO);
+    }
+
+    public ArrayList<Barra> getBarras() {
+        return barras;
+    }
+
+    public void setBarras(ArrayList<Barra> barras) {
+        this.barras = barras;
     }
 }
