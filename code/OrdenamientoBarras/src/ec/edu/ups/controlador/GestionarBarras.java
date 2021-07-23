@@ -37,17 +37,22 @@ public class GestionarBarras extends JPanel {
         }
     }
 
+    private void generarBarras() {
+        this.barras = new ArrayList<Barra>();
+        int desplazamiento = 10;
+        int anchoBarra = Constante.ANCHO / Constante.NUM_BARRAS;
+
+        for (int i=0; i<this.colores.length; i++) {
+            int y = 40 + Constante.ALTO_BARRA - this.altoBarras[i];
+            this.barras.add( new Barra( desplazamiento, y, anchoBarra, this.altoBarras[i], this.colores[i] ));
+            desplazamiento += anchoBarra;
+        }
+    }
+
     private void cargarBarras(Graphics g) {
         generarColoresAleatorios();
         generarAltoBarrasAleatorio();
-
-        this.barras = new ArrayList<Barra>();
-        int desplazamiento = 0;
-        int anchoBarra = Constante.ANCHO / Constante.NUM_BARRAS;
-        for (int i=0; i<this.colores.length; i++) {
-            this.barras.add( new Barra( desplazamiento, 100, anchoBarra, this.altoBarras[i], this.colores[i] ));
-            desplazamiento += anchoBarra;
-        }
+        generarBarras();
 
         for (Barra barra : this.barras) {
             g.fillRect( barra.getPosicionX(), barra.getPosicionY(), barra.getAncho(), barra.getAlto() );
@@ -61,5 +66,9 @@ public class GestionarBarras extends JPanel {
         this.setBackground( Color.LIGHT_GRAY );
 
         cargarBarras(g);
+    }
+
+    public Dimension getPreferredSize() {
+        return new Dimension(Constante.ANCHO, Constante.ALTO);
     }
 }
