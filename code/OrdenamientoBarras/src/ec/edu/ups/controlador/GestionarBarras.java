@@ -51,6 +51,7 @@ public class GestionarBarras extends JPanel {
 
     private void cargarBarras() {
         this.barras = new ArrayList<Barra>();
+
         int desplazamiento = 2;
         int anchoBarra = Constante.ANCHO / Constante.NUM_BARRAS;
 
@@ -69,7 +70,7 @@ public class GestionarBarras extends JPanel {
     }
 
     public void ordenar() {
-        Runnable ejecutar = new OrdenamientoBurbuja(this);
+        Runnable ejecutar = new OrdenamientoBurbuja(this );
         this.hilo = new Thread( ejecutar );
         this.hilo.start();
     }
