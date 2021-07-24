@@ -16,9 +16,19 @@ public class GestionarBarras extends JPanel {
     private int[] altoBarras;
     private int[] anchoBarras;
 
+    private Thread hilo;
+
     public GestionarBarras() {
         super(true);
         this.barras = new ArrayList<Barra>();
+
+        generarBarrasAleatorias();
+    }
+
+    public void generarBarrasAleatorias() {
+        generarColoresAleatorios();
+        generarAltoBarrasAleatorio();
+        cargarBarras();
     }
 
     private void generarColoresAleatorios() {
@@ -39,9 +49,9 @@ public class GestionarBarras extends JPanel {
         }
     }
 
-    private void generarBarras() {
+    private void cargarBarras() {
         this.barras = new ArrayList<Barra>();
-        int desplazamiento = 10;
+        int desplazamiento = 2;
         int anchoBarra = Constante.ANCHO / Constante.NUM_BARRAS;
 
         for (int i=0; i<this.colores.length; i++) {
@@ -52,10 +62,6 @@ public class GestionarBarras extends JPanel {
     }
 
     private void cargarBarras(Graphics g) {
-        generarColoresAleatorios();
-        generarAltoBarrasAleatorio();
-        generarBarras();
-
         for (Barra barra : this.barras) {
             g.fillRect( barra.getPosicionX(), barra.getPosicionY(), barra.getAncho(), barra.getAlto() );
             g.setColor( barra.getColor() );
@@ -63,8 +69,13 @@ public class GestionarBarras extends JPanel {
     }
 
     public void ordenar() {
-        OrdenamientoBurbuja ejecutar = new OrdenamientoBurbuja(this.barras);
-        ejecutar.ordenar();
+        Runnable ejecutar = new OrdenamientoBurbuja(this);
+        this.hilo = new Thread( ejecutar );
+        this.hilo.start();
+    }
+
+    public void pausar() {
+        this.hilo.stop();
     }
 
     @Override

@@ -2,6 +2,8 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.Constante;
 import ec.edu.ups.controlador.GestionarBarras;
+import ec.edu.ups.controlador.OrdernarListener;
+import ec.edu.ups.controlador.PausarListener;
 import ec.edu.ups.controlador.ReiniciarListener;
 
 import javax.swing.*;
@@ -26,6 +28,7 @@ public class OrdenamientoBarras extends JFrame {
         cons.gridy = 0;
         cons.gridwidth = 1;
         cons.gridheight = 1;
+        cons.weightx = 1.0;
         this.getContentPane().add( reiniciarBtn, cons );
 
         JButton ordernarBtn = new JButton("Ordenar");
@@ -33,12 +36,21 @@ public class OrdenamientoBarras extends JFrame {
         cons.gridy = 0;
         cons.gridwidth = 1;
         cons.gridheight = 1;
+        cons.weightx = 1.0;
         this.getContentPane().add( ordernarBtn, cons );
+
+        JButton pausarBtn = new JButton("Pausar");
+        cons.gridx = 2;
+        cons.gridy = 0;
+        cons.gridwidth = 1;
+        cons.gridheight = 1;
+        cons.weightx = 1.0;
+        this.getContentPane().add( pausarBtn, cons );
 
         this.barras = new GestionarBarras();
         cons.gridx = 0;
         cons.gridy = 1;
-        cons.gridwidth = 2;
+        cons.gridwidth = 3;
         cons.gridheight = 3;
         cons.weightx = 1.0;
         cons.weighty = 1.0;
@@ -49,6 +61,12 @@ public class OrdenamientoBarras extends JFrame {
 
         ActionListener reiniciarLstnr = new ReiniciarListener( this.barras );
         reiniciarBtn.addActionListener( reiniciarLstnr );
+
+        ActionListener ordenarLstnr = new OrdernarListener( this.barras );
+        ordernarBtn.addActionListener( ordenarLstnr );
+
+        ActionListener pausarLstnr = new PausarListener( this.barras );
+        pausarBtn.addActionListener( pausarLstnr );
 
         this.setSize( Constante.ANCHO,Constante.ALTO );
         this.addWindowListener( new VentanaMonitor() );
