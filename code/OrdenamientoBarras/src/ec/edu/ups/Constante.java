@@ -2,6 +2,7 @@ package ec.edu.ups;
 
 public class Constante {
 
+    public static String RECURSO = "parametros";
     public static int ANCHO = 800;
     public static int ALTO = 500;
     public static int NUM_BARRAS = 30;

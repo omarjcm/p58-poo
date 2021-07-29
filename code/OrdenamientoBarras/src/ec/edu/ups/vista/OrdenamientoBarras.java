@@ -10,13 +10,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class OrdenamientoBarras extends JFrame {
 
     private GestionarBarras barras;
+    private ResourceBundle rb;
 
     public OrdenamientoBarras() {
-        super("Ordenamiento de Barras");
+        super();
+
+        this.rb = ResourceBundle.getBundle( Constante.RECURSO, Locale.FRENCH);
+        this.setTitle(this.rb.getString("ventana.titulo"));
 
         GridBagLayout gb = new GridBagLayout();
         this.setLayout( gb );
