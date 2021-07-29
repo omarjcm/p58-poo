@@ -47,16 +47,15 @@ public class OrdenamientoBarras extends JFrame {
         cons.weightx = 1.0;
         this.getContentPane().add( pausarBtn, cons );
 
-        String lenguajes[] = {"Español", "Inglés", "Francés"};
-        JComboBox  listaLenguajes = new JComboBox (lenguajes);
-        listaLenguajes.setSelectedIndex(0);
+        String lengualesLst[] = {"Español", "Inglés", "Francés"};
+        JComboBox lenguajesCmbbx = new JComboBox(lengualesLst);
+        lenguajesCmbbx.setSelectedIndex(0);
         cons.gridx = 3;
         cons.gridy = 0;
         cons.gridwidth = 1;
         cons.gridheight = 1;
         cons.weightx = 1.0;
-        this.getContentPane().add( listaLenguajes, cons );
-
+        this.getContentPane().add( lenguajesCmbbx, cons );
 
         this.barras = new GestionarBarras();
         cons.gridx = 0;
