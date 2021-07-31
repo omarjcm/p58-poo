@@ -9,4 +9,9 @@ public class Constante {
     public static int ANCHO_BARRA = 5;
     public static int ALTO_BARRA = 300;
 
+    public static String VENTANA_TITULO = "ventana.titulo";
+    public static String VENTANA_BTN_INICIAR = "ventana.btn.iniciar";
+    public static String VENTANA_BTN_ORDENAR = "ventana.btn.ordenar";
+    public static String VENTANA_BTN_PAUSAR = "ventana.btn.pausar";
+
 }
