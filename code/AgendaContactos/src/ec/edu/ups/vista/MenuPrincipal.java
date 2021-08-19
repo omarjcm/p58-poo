@@ -2,20 +2,23 @@ package ec.edu.ups.vista;
 
 import ec.edu.ups.Constantes;
 
+import java.util.ResourceBundle;
+
 public class MenuPrincipal {
-    public static void tituloPrincipal() {
+
+    public static void tituloPrincipal(ResourceBundle rs) {
         System.out.println(Constantes.TEXT_YELLOW + "===================================");
-        System.out.println("AGENDA DE CONTACTOS");
+        System.out.println(rs.getString(Constantes.TITULO_PRINCIPAL));
         System.out.println("===================================");
     }
 
-    public static void opcionesPrincipales() {
-        System.out.println("[C]rear Contacto.");
-        System.out.println("[M]odificar Contacto.");
-        System.out.println("[E]liminar Contacto.");
-        System.out.println("[B]uscar Contacto.");
-        System.out.println("[L]istar Contactos.");
-        System.out.println("[S]alir.");
+    public static void opcionesPrincipales(ResourceBundle rs) {
+        System.out.println("[1]. " + rs.getString( Constantes.OPCION_C ));
+        System.out.println("[2]. " + rs.getString( Constantes.OPCION_R ));
+        System.out.println("[3]. " + rs.getString( Constantes.OPCION_U ));
+        System.out.println("[4]. " + rs.getString( Constantes.OPCION_D ));
+        System.out.println("[5]. " + rs.getString( Constantes.OPCION_G ));
+        System.out.println("[6]. " + rs.getString( Constantes.OPCION_S ));
         System.out.println("==================================="+ Constantes.TEXT_RESET);
         System.out.print("Ingresar opción: ");
     }

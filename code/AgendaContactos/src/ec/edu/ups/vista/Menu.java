@@ -8,11 +8,11 @@ import jdk.swing.interop.SwingInterOpUtils;
 import java.util.Scanner;
 
 public class Menu {
-    private String opcion;
+    private int opcion;
     private Scanner consola;
     private GestionarContactos contactos;
 
-    public Menu(String opcion) {
+    public Menu(int opcion) {
         this.opcion = opcion;
         this.consola = new Scanner(System.in);
         this.contactos = new GestionarContactos();
@@ -24,7 +24,7 @@ public class Menu {
         Contacto contacto = null;
 
         switch (this.opcion) {
-            case "C":
+            case 1:
                 MenuPrincipal.subTitulo("REGISTRAR");
                 System.out.print("Nombres y Apellidos: ");
                 nombres = this.consola.nextLine();
@@ -32,7 +32,7 @@ public class Menu {
                 numTelefono = this.consola.nextLine();
                 this.contactos.registrarContacto(numTelefono, nombres);
                 break;
-            case "M":
+            case 2:
                 MenuPrincipal.subTitulo("MODIFICAR");
                 System.out.print("Nombres y Apellidos: ");
                 nombres = this.consola.nextLine();
@@ -51,7 +51,7 @@ public class Menu {
                     System.out.println("----------------------------------");
                 }
                 break;
-            case "E":
+            case 3:
                 MenuPrincipal.subTitulo("ELIMINAR");
                 System.out.print("Nombres y Apellidos: ");
                 nombres = this.consola.nextLine();
@@ -67,11 +67,11 @@ public class Menu {
                     System.out.println("----------------------------------");
                 }
                 break;
-            case "L":
+            case 4:
                 MenuPrincipal.subTitulo("LISTAR");
                 this.contactos.listarContactos();
                 break;
-            case "B":
+            case 5:
                 MenuPrincipal.subTitulo("BUSCAR");
                 System.out.print("Nombres y Apellidos: ");
                 nombres = this.consola.nextLine();
