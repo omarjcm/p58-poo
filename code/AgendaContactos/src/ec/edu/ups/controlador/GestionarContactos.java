@@ -1,7 +1,7 @@
 package ec.edu.ups.controlador;
 
-import ec.edu.ups.modelo.Archivo;
-import ec.edu.ups.modelo.Contacto;
+import ec.edu.ups.modelo.dominio.Archivo;
+import ec.edu.ups.modelo.dominio.Contacto;
 
 import java.util.ArrayList;
 

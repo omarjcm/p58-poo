@@ -1,4 +1,4 @@
-package ec.edu.ups.modelo;
+package ec.edu.ups.modelo.dominio;
 
 import ec.edu.ups.Constantes;
 
@@ -10,6 +10,11 @@ public class Contacto {
     private String nombres;
 
     public Contacto() {
+    }
+
+    public Contacto(Contacto contacto) {
+        this.telefono = contacto.getTelefono();
+        this.nombres = contacto.getNombres();
     }
 
     public Contacto(String telefono, String nombres) {

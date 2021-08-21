@@ -1,4 +1,4 @@
-package ec.edu.ups.modelo;
+package ec.edu.ups.modelo.dominio;
 
 import java.io.File;
 import java.io.FileNotFoundException;
