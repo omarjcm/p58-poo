@@ -2,15 +2,25 @@ package ec.edu.ups;
 
 public class Constantes {
 
+    public static final int ANCHO = 800;
+    public static final int ALTO = 600;
+
     public static final String DATOS = "datos";
     public static final String TITULO_PRINCIPAL = "titulo.principal";
+    public static final String SUBTITULO_PRINCIPAL = "titulo.subprincipal";
 
-    public static final String OPCION_C = "opcion.c";
-    public static final String OPCION_R = "opcion.r";
-    public static final String OPCION_U = "opcion.u";
-    public static final String OPCION_D = "opcion.d";
-    public static final String OPCION_G = "opcion.g";
-    public static final String OPCION_S = "opcion.s";
+    // Crear
+    public static final String OPCION_C = "opcion.crear";
+    // Leer
+    public static final String OPCION_R = "opcion.buscar";
+    public static final String OPCION_U = "opcion.modificar";
+    public static final String OPCION_D = "opcion.eliminar";
+    public static final String OPCION_G = "opcion.listar";
+    public static final String OPCION_S = "opcion.salir";
+
+    public static final String OPCION_ID = "opcion.idioma";
+    public static final String OPCION_IN = "opcion.ingles";
+    public static final String OPCION_ES = "opcion.español";
 
     // Define color constants
     public static final String TEXT_RESET = "\u001B[0m";
