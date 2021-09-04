@@ -38,7 +38,7 @@ public class ArchivoBinario {
         try {
             FileInputStream fichero = new FileInputStream( this.nombreArchivo );
             filtro = new ObjectInputStream( fichero );
-            return (ArrayList) filtro.readObject();
+            return (ArrayList<Contacto>) filtro.readObject();
         } catch (IOException ex) {
             System.out.println( ex.getMessage() );
         } catch (ClassNotFoundException ex) {
